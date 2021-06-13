@@ -1,0 +1,52 @@
+<html>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+
+    <style>
+        th{ 
+            color:#fff;
+                }
+    </style>
+
+    <table class="table table-striped">
+        <tr class="bg-info">
+            <th>Name</th>
+            <th>Status</th>
+            <th>Max Grant Amount</th>
+            <th>Treatment list</th>
+        </tr>
+        
+        <tbody id="myTable">
+        
+        </tbody>
+        <p id="hiddenData" hidden><%= data %></p>
+
+    </table>
+    <div class="row mb-3">
+        <div class="col-4 themed-grid-col"></div>
+        <div class="col-4 themed-grid-col"><button onclick="window.location.href='http://localhost:3001/update'" class="btn btn-primary">Update Funds</button></div>
+        <div class="col-4 themed-grid-col"></div>
+      </div>
+
+    <script>
+        textData = document.getElementById("hiddenData").textContent;
+     
+        buildTable(textData)
+     
+        function buildTable(input){
+            var table = document.getElementById('myTable')
+            input = JSON.parse(input)
+            for (var i = 0; i < 5; i++){
+                var row = 
+                    `<tr>
+                        <td>${input[i].assistantProgramName}</td>
+                        <td>${input[i].status}</td>
+                        <td>${input[i].grantAmount}</td>
+                        <td>${input[i].treatmentList}</td>
+                    </tr>`
+                table.innerHTML += row
+            }
+        }
+    </script>
+</html>
